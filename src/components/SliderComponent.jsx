@@ -32,20 +32,21 @@ function SliderComponent({ details }) {
   useEffect(() => {
     const getMovies = async () => {
       const popularMovies = await getPopularMovies(parameter);
-      console.log(popularMovies.results);
+      //console.log(popularMovies.results);
       const modifiedPopularMovies = modifierFunction(popularMovies.results);
       //console.log(modifiedPopularMovies);
       setMovies(modifiedPopularMovies);
     };
     getMovies();
-  }, []);
+  }, [parameter]);
   var settings = {
     infinite: true,
-    speed: 10000,
+    speed: 500,
     slidesToShow: 7,
-    slidesToScroll: 5,
+    slidesToScroll: 1,
     autoplay: true,
-    arrows: false,
+    arrows: true,
+
     responsive: [
       {
         breakpoint: 768,
@@ -55,12 +56,16 @@ function SliderComponent({ details }) {
         breakpoint: 375,
         settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true },
       },
+      {
+        breakpoint: 990,
+        settings: { slidesToShow: 5, slidesToScroll: 3, infinite: true },
+      },
     ],
   };
   return (
     <div>
-      <h1>{title}</h1>
       <div className="px-5">
+        <h1 className="my-4 text-xl">{title}</h1>
         <Slider {...settings}>
           {popMovies.map((item) => (
             <div key={item.id} className="px-2">
@@ -68,7 +73,7 @@ function SliderComponent({ details }) {
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
                   alt={item.id}
-                  className="max-h-[300px] object-cover rounded-md "
+                  className="max-h-[300px] object-cover rounded-xl "
                 />
               </div>
             </div>

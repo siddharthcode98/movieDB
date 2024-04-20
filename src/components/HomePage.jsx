@@ -1,3 +1,4 @@
+import ImageCarousal from "./MoviesHero";
 import SliderComponent from "./SliderComponent";
 
 const listNames = [
@@ -20,10 +21,13 @@ const listNames = [
 
 function HomePage() {
   return (
-    <div>
-      {listNames.map((item) => (
-        <SliderComponent key={item.id} details={item}/>
-      ))}
+    <div className="flex flex-col  pt-12 ">
+      <ImageCarousal />
+      <div className="w-full lg:px-36 md:px-20 ">
+        {listNames.map((item) => (
+          <SliderComponent key={item.id} details={item} />
+        ))}
+      </div>
     </div>
   );
 }

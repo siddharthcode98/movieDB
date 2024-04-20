@@ -8,8 +8,8 @@ function Header() {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className="md:px-10  bg-slate-900">
-      <div className="flex items-center justify-between p-3">
+    <div className="md:px-10  bg-nav fixed w-full z-10  ">
+      <div className="flex items-center justify-between p-3 ">
         <div className="hidden md:block">
           <h1 className="">Movie Database</h1>
         </div>
@@ -89,21 +89,21 @@ function Header() {
 
         <div className="flex items-center ">
           <div>
-            <input />
+            <input type="search" />
           </div>
-          <nav className="hidden md:block">
+          <nav className="hidden md:block px-2">
             <ul className="flex items-center  justify-between gap-4">
               <li>
-                <Link path="/">Movies</Link>
+                <Link to="/">Movies</Link>
               </li>
               <li>
-                <Link path="/tv-shows">Tv Shows</Link>
+                <Link to="/tv-shows">Tv Shows</Link>
               </li>
               <li>
-                <Link path="/wishlist">Wishlist</Link>
+                <Link to="/wishlist">Wishlist</Link>
               </li>
               <li>
-                <Link path="/login">Logout</Link>
+                <Link to="/login">Logout</Link>
               </li>
             </ul>
           </nav>
