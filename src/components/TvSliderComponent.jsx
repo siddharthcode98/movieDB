@@ -6,6 +6,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import { MdOutlineStar } from "react-icons/md";
+import { Link } from "react-router-dom";
+
 function TvSliderComponent({ details }) {
   const { title, parameter } = details;
   const [tvShow, setTvShows] = useState([]);
@@ -43,18 +46,32 @@ function TvSliderComponent({ details }) {
   return (
     <div>
       <div className="px-5">
-        <h1 className="my-4 text-xl">{title}</h1>
+        <h1 className="my-4 text-xl text-color2">#{title}</h1>
         <Slider {...settings}>
           {tvShow.map((item) => (
-            <div key={item.id} className="px-2">
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
-                  alt={item.id}
-                  className="max-h-[320px] h-[320px] object-cover rounded-md "
-                />
+            <Link key={item.id}>
+              <div className="mx-2 relative ">
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
+                    alt={item.id}
+                    className="h-[350px] max-h-[300px] object-cover rounded-xl "
+                  />
+                </div>
+                <div className="absolute bottom-0 smoothGradient w-full p-2">
+                  <p className=" overflow-ellipsis text-sm md:text-md font-bold hover:text-[yellow]">
+                    {item.name}
+                  </p>
+                  <div className="text-white flex items-center ">
+                    <MdOutlineStar color="f5b50a" />
+                    <div className="flex ">
+                      {Math.round(item.voteAverage)}
+                      /10
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </Slider>
       </div>

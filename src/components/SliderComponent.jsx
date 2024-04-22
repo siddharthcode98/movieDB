@@ -5,6 +5,8 @@ import { getPopularMovies } from "../../data";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { MdOutlineStar } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function SliderComponent({ details }) {
   const { title, parameter } = details;
@@ -34,7 +36,7 @@ function SliderComponent({ details }) {
       const popularMovies = await getPopularMovies(parameter);
       //console.log(popularMovies.results);
       const modifiedPopularMovies = modifierFunction(popularMovies.results);
-      //console.log(modifiedPopularMovies);
+      // console.log(modifiedPopularMovies);
       setMovies(modifiedPopularMovies);
     };
     getMovies();
@@ -44,20 +46,28 @@ function SliderComponent({ details }) {
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     arrows: true,
 
     responsive: [
+      {
+        breakpoint: 425,
+        settings: { slidesToShow: 2, slidesToScroll: 5, infinite: true },
+      },
       {
         breakpoint: 768,
         settings: { slidesToShow: 4, slidesToScroll: 5, infinite: true },
       },
       {
         breakpoint: 375,
-        settings: { slidesToShow: 3, slidesToScroll: 3, infinite: true },
+        settings: { slidesToShow: 2, slidesToScroll: 3, infinite: true },
       },
       {
         breakpoint: 990,
+        settings: { slidesToShow: 5, slidesToScroll: 3, infinite: true },
+      },
+      {
+        breakpoint: 1080,
         settings: { slidesToShow: 5, slidesToScroll: 3, infinite: true },
       },
     ],
@@ -65,18 +75,32 @@ function SliderComponent({ details }) {
   return (
     <div>
       <div className="px-5">
-        <h1 className="my-4 text-xl">{title}</h1>
+        <h1 className="my-4 text-xl text-color2">#{title}</h1>
         <Slider {...settings}>
           {popMovies.map((item) => (
-            <div key={item.id} className="px-2">
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
-                  alt={item.id}
-                  className="max-h-[300px] object-cover rounded-xl "
-                />
+            <Link key={item.id} to={`/movies/${item.id}`}>
+              <div className="mx-2 relative ">
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
+                    alt={item.id}
+                    className="h-[350px] max-h-[300px] object-cover rounded-xl "
+                  />
+                </div>
+                <div className="absolute bottom-0 smoothGradient w-full p-2">
+                  <p className=" overflow-ellipsis text-sm md:text-md font-bold hover:text-[yellow]">
+                    {item.title}
+                  </p>
+                  <div className="text-white flex items-center ">
+                    <MdOutlineStar color="f5b50a" />
+                    <div className="flex ">
+                      {Math.round(item.voteAverage)}
+                      /10
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </Slider>
       </div>
@@ -85,3 +109,4 @@ function SliderComponent({ details }) {
 }
 
 export default SliderComponent;
+// <span>&#47;</span>10

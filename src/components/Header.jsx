@@ -8,12 +8,15 @@ function Header() {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <div className="md:px-10  bg-nav fixed w-full z-10  ">
+    <header className="md:px-10  bg-nav fixed w-full z-10 p-3  ">
       <div className="flex items-center justify-between p-3 ">
         <div className="hidden md:block">
           <h1 className="">Movie Database</h1>
         </div>
-        <button className="block md:hidden" onClick={() => setOpen(!isOpen)}>
+        <button
+          className="block md:hidden text-IconColor"
+          onClick={() => setOpen(!isOpen)}
+        >
           <GiHamburgerMenu />
         </button>
         <div>
@@ -54,17 +57,17 @@ function Header() {
                       <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                         <button
                           type="button"
-                          className="-m-2.5 p-2.5"
+                          className="mt-10  p-2.5 text-IconColor"
                           onClick={() => setOpen(false)}
                         >
-                          <IoClose />
+                          <IoClose size={"20px"} />
                         </button>
                       </div>
                     </Transition.Child>
-                    <div className="bg-white w-[320px]">
+                    <div className="bg-nav md:w-[320px] w-[250px] pt-20  md:px-10 px-5  flex flex-col gap-7">
                       <h1 className="">Movie Database</h1>
                       <nav>
-                        <ul className="flex flex-col gap-4">
+                        <ul className="flex flex-col gap-10 ">
                           <li>
                             <Link path="/">Movies</Link>
                           </li>
@@ -103,13 +106,18 @@ function Header() {
                 <Link to="/wishlist">Wishlist</Link>
               </li>
               <li>
-                <Link to="/login">Logout</Link>
+                <Link
+                  to="/login"
+                  className="bg-buttonBackgroundColor p-2 rounded-[15px] text-[14px] "
+                >
+                  Logout
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

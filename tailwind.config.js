@@ -4,8 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        nav: "#254d62",
-        main: "#04152d",
+        nav: "#0f2133",
+        main: "#06121e",
+        color1: "#dd003f",
+        color2: "#dcf836",
+        IconColor: "#fff",
+
+        buttonBackgroundColor: "#dd003f",
+      },
+      fontFamily: {
+        dosis: ["Dosis", "system - ui", "sans - serif"],
       },
     },
   },

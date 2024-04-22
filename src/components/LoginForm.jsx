@@ -50,7 +50,7 @@ function LoginForm() {
     navigation("/");
   };
   return (
-    <div className="min">
+    <div>
       <p className="font-bold">sign-in form</p>
       <form
         onSubmit={(e) => onSubmitForm(e)}
