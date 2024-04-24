@@ -8,6 +8,7 @@ export default {
         main: "#06121e",
         color1: "#dd003f",
         color2: "#dcf836",
+        color3: "#abb7c4",
         IconColor: "#fff",
 
         buttonBackgroundColor: "#dd003f",

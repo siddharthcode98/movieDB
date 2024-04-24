@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { getPopularMovies } from "../../data";
+import { getPopularMovies } from "../../../data";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdOutlineStar } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { Puff } from "react-loading-icons";
 
 function SliderComponent({ details }) {
   const { title, parameter } = details;
   const [popMovies, setMovies] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   const modifierFunction = (movies) =>
     movies.map((item) => {
@@ -38,15 +40,17 @@ function SliderComponent({ details }) {
       const modifiedPopularMovies = modifierFunction(popularMovies.results);
       // console.log(modifiedPopularMovies);
       setMovies(modifiedPopularMovies);
+      setLoading(!isLoading);
     };
     getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parameter]);
   var settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     arrows: true,
 
     responsive: [
@@ -73,40 +77,52 @@ function SliderComponent({ details }) {
     ],
   };
   return (
-    <div>
-      <div className="px-5">
-        <h1 className="my-4 text-xl text-color2">#{title}</h1>
-        <Slider {...settings}>
-          {popMovies.map((item) => (
-            <Link key={item.id} to={`/movies/${item.id}`}>
-              <div className="mx-2 relative ">
-                <div>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
-                    alt={item.id}
-                    className="h-[350px] max-h-[300px] object-cover rounded-xl "
-                  />
-                </div>
-                <div className="absolute bottom-0 smoothGradient w-full p-2">
-                  <p className=" overflow-ellipsis text-sm md:text-md font-bold hover:text-[yellow]">
-                    {item.title}
-                  </p>
-                  <div className="text-white flex items-center ">
-                    <MdOutlineStar color="f5b50a" />
-                    <div className="flex ">
-                      {Math.round(item.voteAverage)}
-                      /10
+    <>
+      {isLoading ? (
+        <div className="absolute top-[50%] left-[50%]">
+          <Puff
+            stroke="#dcf836"
+            strokeWidth={3}
+            height={"80px"}
+            width={"80px"}
+          />
+        </div>
+      ) : (
+        <div>
+          <div className="px-5">
+            <h1 className="my-4 text-xl text-color2">#{title}</h1>
+            <Slider {...settings}>
+              {popMovies.map((item) => (
+                <Link key={item.id} to={`/movies/${item.id}`}>
+                  <div className="mx-2 relative max-h-[250px] ">
+                    <div>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
+                        alt={item.id}
+                        className=" max-h-[250px] object-cover rounded-xl "
+                      />
+                    </div>
+                    <div className="absolute bottom-0 smoothGradient w-full p-2 ">
+                      <p className="  text-sm md:text-md font-bold hover:text-[yellow]">
+                        {item.title}
+                      </p>
+                      <div className="text-white flex items-center ">
+                        <MdOutlineStar color="f5b50a" />
+                        <div className="flex ">
+                          {Math.round(item.voteAverage)}
+                          /10
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </Slider>
-      </div>
-    </div>
+                </Link>
+              ))}
+            </Slider>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
 export default SliderComponent;
-// <span>&#47;</span>10

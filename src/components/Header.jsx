@@ -8,7 +8,7 @@ function Header() {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <header className="md:px-10  bg-nav fixed w-full z-10 p-3  ">
+    <header className="md:px-10  bg-nav fixed w-full z-50 p-3  ">
       <div className="flex items-center justify-between p-3 ">
         <div className="hidden md:block">
           <h1 className="">Movie Database</h1>
@@ -19,7 +19,7 @@ function Header() {
         >
           <GiHamburgerMenu />
         </button>
-        <div>
+        <div className="z-50">
           <Transition.Root show={isOpen}>
             <Dialog onClose={setOpen}>
               <Transition.Child
@@ -69,16 +69,16 @@ function Header() {
                       <nav>
                         <ul className="flex flex-col gap-10 ">
                           <li>
-                            <Link path="/">Movies</Link>
+                            <Link to="/">Movies</Link>
                           </li>
                           <li>
-                            <Link path="/tv-shows">Tv Shows</Link>
+                            <Link to="/tv-shows">Tv Shows</Link>
                           </li>
                           <li>
-                            <Link path="/wishlist">Wishlist</Link>
+                            <Link to="/wishlist">Wishlist</Link>
                           </li>
                           <li>
-                            <Link path="/login">Logout</Link>
+                            <Link to="/login">Logout</Link>
                           </li>
                         </ul>
                       </nav>

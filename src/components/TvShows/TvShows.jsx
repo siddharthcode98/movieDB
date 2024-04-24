@@ -1,3 +1,4 @@
+import Footer from "../Footer";
 import TvShowsHero from "./TvShowsHero";
 import TvSliderComponent from "./TvSliderComponent";
 
@@ -33,6 +34,7 @@ function TvShows() {
           <TvSliderComponent key={item.id} details={item} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

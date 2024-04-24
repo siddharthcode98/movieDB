@@ -1,4 +1,6 @@
-import ImageCarousal from "./MoviesHero";
+import Footer from "../Footer";
+import MoviesHero from "./MoviesHero";
+
 import SliderComponent from "./SliderComponent";
 
 const listNames = [
@@ -22,12 +24,13 @@ const listNames = [
 function HomePage() {
   return (
     <div className="flex flex-col  pt-12 ">
-      <ImageCarousal />
-      <div className="w-full lg:px-36 md:px-20 ">
+      <MoviesHero />
+      <div className="w-full lg:px-36 md:px-18 px-5  md:px-20 ">
         {listNames.map((item) => (
           <SliderComponent key={item.id} details={item} />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
