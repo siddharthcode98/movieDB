@@ -12,7 +12,6 @@ function ProductionCompanies({ details }) {
     });
 
   const modifiedProductionCompany = modifierFunctionProduction(details);
-  console.log(modifiedProductionCompany);
   return (
     <div className="flex gap-4 items-center flex-wrap pt-5">
       {modifiedProductionCompany.map((item) => {

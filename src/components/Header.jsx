@@ -8,7 +8,7 @@ function Header() {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <header className="md:px-10  bg-nav fixed w-full z-50 p-3  ">
+    <header className="md:px-10  bg-nav sticky top-0 w-full p-3 z-10  ">
       <div className="flex items-center justify-between p-3 ">
         <div className="hidden md:block">
           <h1 className="">Movie Database</h1>

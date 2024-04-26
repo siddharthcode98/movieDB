@@ -36,9 +36,9 @@ function SliderComponent({ details }) {
   useEffect(() => {
     const getMovies = async () => {
       const popularMovies = await getPopularMovies(parameter);
-      //console.log(popularMovies.results);
+      console.log(popularMovies);
       const modifiedPopularMovies = modifierFunction(popularMovies.results);
-      // console.log(modifiedPopularMovies);
+      //console.log(modifiedPopularMovies);
       setMovies(modifiedPopularMovies);
       setLoading(!isLoading);
     };
@@ -50,7 +50,7 @@ function SliderComponent({ details }) {
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     arrows: true,
 
     responsive: [
@@ -94,15 +94,13 @@ function SliderComponent({ details }) {
             <Slider {...settings}>
               {popMovies.map((item) => (
                 <Link key={item.id} to={`/movies/${item.id}`}>
-                  <div className="mx-2 relative max-h-[250px] ">
-                    <div>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
-                        alt={item.id}
-                        className=" max-h-[250px] object-cover rounded-xl "
-                      />
-                    </div>
-                    <div className="absolute bottom-0 smoothGradient w-full p-2 ">
+                  <div className="mx-2 relative   ">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
+                      alt={item.id}
+                      className=" h-full  object-cover rounded-xl "
+                    />
+                    <div className="absolute bottom-0 smoothGradient w-full px-2 ">
                       <p className="  text-sm md:text-md font-bold hover:text-[yellow]">
                         {item.title}
                       </p>

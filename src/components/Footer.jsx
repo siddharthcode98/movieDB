@@ -2,7 +2,7 @@ import { FaTwitterSquare, FaGithubSquare, FaLinkedin } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="h-[250px]  bg-slate-900 bg-top mt-40 flex flex-col items-center justify-center">
+    <footer className="  w-full bottom-0 h-[250px]  bg-slate-900 bg-top mt-40 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-3 ">
         <h2 className="text-3xl ">Follow me on social media</h2>
         <div className="flex items-center gap-4">

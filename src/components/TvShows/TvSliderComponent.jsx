@@ -15,7 +15,6 @@ function TvSliderComponent({ details }) {
   const { title, parameter } = details;
   const [tvShow, setTvShows] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  console.log(tvShow);
   useEffect(() => {
     const getTvShow = async () => {
       const tvShows = await getTvShows(parameter);
@@ -72,15 +71,13 @@ function TvSliderComponent({ details }) {
             <h1 className="my-4 text-xl text-color2">#{title}</h1>
             <Slider {...settings}>
               {tvShow.map((item) => (
-                <Link key={item.id}>
-                  <div className="mx-2 relative max-h-[250px] ">
-                    <div>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
-                        alt={item.id}
-                        className="max-h-[250px]  object-cover rounded-xl "
-                      />
-                    </div>
+                <Link key={item.id} to={`/tv-shows/${item.id}`}>
+                  <div className="mx-2 relative ">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500/${item.posterPath}`}
+                      alt={item.id}
+                      className=" h-full  object-cover rounded-xl "
+                    />
                     <div className="absolute bottom-0 smoothGradient w-full p-2">
                       <p className=" overflow-ellipsis text-sm md:text-md font-bold hover:text-[yellow]">
                         {item.name}

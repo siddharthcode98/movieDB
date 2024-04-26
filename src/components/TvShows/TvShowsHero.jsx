@@ -1,5 +1,3 @@
-//import tvImage from "../assets/tv-image-1.avif";
-
 function TvShowsHero() {
   return (
     <>
@@ -9,12 +7,6 @@ function TvShowsHero() {
         </h1>
         <p className="text-3xl pt-1 bg-gradient">They are all right here!!</p>
       </div>
-      {/* <div>
-        <img
-          src={tvImage}
-          className=" h-[730px] object-cover rounded-lg w-full opacity-10"
-        />
-      </div> */}
     </>
   );
 }

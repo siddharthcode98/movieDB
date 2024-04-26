@@ -23,9 +23,9 @@ const listNames = [
 
 function HomePage() {
   return (
-    <div className="flex flex-col  pt-12 ">
+    <div className=" min-h-screen">
       <MoviesHero />
-      <div className="w-full lg:px-36 md:px-18 px-5  md:px-20 ">
+      <div className="w-full lg:px-36 md:px-18 px-5  md:px-20">
         {listNames.map((item) => (
           <SliderComponent key={item.id} details={item} />
         ))}

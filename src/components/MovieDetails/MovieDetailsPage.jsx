@@ -21,7 +21,7 @@ function MovieDetailsPage() {
   useEffect(() => {
     const getDetails = async () => {
       const Moviedetails = await getMovieDetails(params.id);
-      const CastDetails = await getCast(params.id);
+      const CastDetails = await getCast(params.id, "movie");
       const CrewDetails = await getCrew(params.id);
       setCrewDetails(CrewDetails);
       setMovie(Moviedetails);
@@ -37,11 +37,11 @@ function MovieDetailsPage() {
   const crafts = Object.groupBy(crewDetails, (item) => item.job);
 
   //console.log(movie.productionCompanies);
-
+  // console.log(movie.budget);
   return (
     <>
       {isLoading ? (
-        <div className="absolute top-[50%] left-[50%]">
+        <div className="relative top-[300px] left-[50%] ">
           <Puff
             stroke="#dcf836"
             strokeWidth={3}
@@ -51,7 +51,7 @@ function MovieDetailsPage() {
         </div>
       ) : (
         <>
-          <div className="relative bg-main min-h-screen overflow-y-auto overflow-x-hidden">
+          <div className="relative bg-main min-h-screen  overflow-x-hidden overflow-y-auto">
             <div>
               <img
                 src={backdrop}
@@ -59,7 +59,7 @@ function MovieDetailsPage() {
                 className="opacity-10 md:h-[400px] w-full object-cover object-top "
               />
             </div>
-            <div className="absolute top-10 pt-16 pb-5 px-5  w-screen">
+            <div className="absolute top-5 pt-16 pb-5 px-5  w-screen">
               <div className="mr-auto ml-auto pr-10 pl-10 md:w-[640px] lg:w-[990px] xl:w-[1200px] ">
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-3 ">
                   <img
@@ -140,7 +140,6 @@ function MovieDetailsPage() {
                     </div>
 
                     <div className="pt-10">
-                      <h2 className=" text-color2 font-bold text-xl">Cast</h2>
                       <PopularActors castDetails={castDetails} />
                     </div>
                     <div className="pt-3">

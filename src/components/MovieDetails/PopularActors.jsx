@@ -12,6 +12,7 @@ function PopularActors({ castDetails }) {
   };
   return (
     <>
+      <h2 className=" text-color2 font-bold text-xl">Cast</h2>
       <div className="grid grid-cols-3 gap-3 ">
         {popularActors.slice(0, update).map((item) => {
           if (
