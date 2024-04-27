@@ -1,4 +1,5 @@
 import Footer from "../Footer";
+import Header from "../Header";
 import MoviesHero from "./MoviesHero";
 
 import SliderComponent from "./SliderComponent";
@@ -23,15 +24,18 @@ const listNames = [
 
 function HomePage() {
   return (
-    <div className=" min-h-screen">
-      <MoviesHero />
-      <div className="w-full lg:px-36 md:px-18 px-5  md:px-20">
-        {listNames.map((item) => (
-          <SliderComponent key={item.id} details={item} />
-        ))}
+    <>
+      <Header />
+      <div className=" min-h-screen">
+        <MoviesHero />
+        <div className="w-full lg:px-36 md:px-18 px-5  md:px-20">
+          {listNames.map((item) => (
+            <SliderComponent key={item.id} details={item} />
+          ))}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 import Footer from "../Footer";
+import Header from "../Header";
 import TvShowsHero from "./TvShowsHero";
 import TvSliderComponent from "./TvSliderComponent";
 
@@ -27,15 +28,18 @@ const listNames = [
 
 function TvShows() {
   return (
-    <div className="flex flex-col  pt-12 ">
-      <TvShowsHero />
-      <div className="w-full lg:px-36 md:px-20 ">
-        {listNames.map((item) => (
-          <TvSliderComponent key={item.id} details={item} />
-        ))}
+    <>
+      <Header />
+      <div className="flex flex-col  pt-12 ">
+        <TvShowsHero />
+        <div className="w-full lg:px-36 md:px-20 ">
+          {listNames.map((item) => (
+            <TvSliderComponent key={item.id} details={item} />
+          ))}
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }
 

@@ -5,6 +5,7 @@ import { MdOutlineStar } from "react-icons/md";
 import { Puff } from "react-loading-icons";
 import ProductionCompanies from "./ProductionCompanies";
 import PopularActors from "./PopularActors";
+import Header from "../Header";
 
 function MovieDetailsPage() {
   const [isLoading, setLoading] = useState(true);
@@ -36,10 +37,9 @@ function MovieDetailsPage() {
   const Generes = movie.genres === undefined ? Array(10) : movie.genres;
   const crafts = Object.groupBy(crewDetails, (item) => item.job);
 
-  //console.log(movie.productionCompanies);
-  // console.log(movie.budget);
   return (
     <>
+      <Header />
       {isLoading ? (
         <div className="relative top-[300px] left-[50%] ">
           <Puff
@@ -162,30 +162,3 @@ function MovieDetailsPage() {
 }
 
 export default MovieDetailsPage;
-// adult: item.adult,
-// backdropPath: item.backdrop_path,
-// belongsToCollection: item.belongs_to_collection,
-// budget: item.budget,
-// genreIds: item.genre_ids,
-// homepage: item.homepage,
-// id: item.id,
-// imdbId: item.imdb_id,
-// originCountry: item.origin_country,
-// originalLanguage: item.original_language,
-// originalTitle: item.original_title,
-// overview: item.overview,
-// popularity: item.popularity,
-// posterPath: item.poster_path,
-// productionCompanies: item.production_companies,
-// productionCountries: item.production_countries,
-// releaseDate: item.release_date,
-// revenue: item.revenue,
-// runtime: item.runtime,
-// firstAirDate: item.first_air_date,
-// spokenLanguages: item.spoken_languages,
-// status: item.status,
-// tagline: item.tagline,
-// title: item.title,
-// video: item.video,
-// voteAverage: item.vote_average,
-// voteCount: item.vote_count,

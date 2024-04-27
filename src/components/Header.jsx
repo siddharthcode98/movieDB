@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoClose } from "react-icons/io5";
+import LogoutBtn from "./LogoutBtn";
 
 function Header() {
   const [isOpen, setOpen] = useState(false);
@@ -14,7 +15,7 @@ function Header() {
           <h1 className="">Movie Database</h1>
         </div>
         <button
-          className="block md:hidden text-IconColor"
+          className="block md:hidden text-IconColor "
           onClick={() => setOpen(!isOpen)}
         >
           <GiHamburgerMenu />
@@ -78,7 +79,7 @@ function Header() {
                             <Link to="/wishlist">Wishlist</Link>
                           </li>
                           <li>
-                            <Link to="/login">Logout</Link>
+                            <LogoutBtn />
                           </li>
                         </ul>
                       </nav>
@@ -91,9 +92,6 @@ function Header() {
         </div>
 
         <div className="flex items-center ">
-          <div>
-            <input type="search" />
-          </div>
           <nav className="hidden md:block px-2">
             <ul className="flex items-center  justify-between gap-4">
               <li>
@@ -106,12 +104,7 @@ function Header() {
                 <Link to="/wishlist">Wishlist</Link>
               </li>
               <li>
-                <Link
-                  to="/login"
-                  className="bg-buttonBackgroundColor p-2 rounded-[15px] text-[14px] "
-                >
-                  Logout
-                </Link>
+                <LogoutBtn />
               </li>
             </ul>
           </nav>

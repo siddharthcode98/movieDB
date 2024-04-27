@@ -6,6 +6,7 @@ import PopularActors from "../MovieDetails/PopularActors";
 import { MdOutlineStar } from "react-icons/md";
 import TvProviders from "./TvProviders";
 import { Puff } from "react-loading-icons";
+import Header from "../Header";
 
 function TvShowsDetails() {
   const params = useParams();
@@ -31,6 +32,7 @@ function TvShowsDetails() {
 
   return (
     <>
+      <Header />
       {isLoading ? (
         <div className="absolute top-[50%] left-[50%]">
           <Puff

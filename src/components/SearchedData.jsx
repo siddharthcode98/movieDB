@@ -5,6 +5,7 @@ import { getUserSearchResults } from "../../data";
 import { MdOutlineStar } from "react-icons/md";
 import { Link } from "react-router-dom";
 import emptyFolder from "../assets/empty-folder.png";
+import Header from "./Header";
 
 /* eslint-disable react/prop-types */
 function SearchedData() {
@@ -29,6 +30,7 @@ function SearchedData() {
 
   return (
     <>
+      <Header />
       {input.length > 0 ? (
         <div className="px-10 pt-5">
           {movieResuls.length > 0 && (
