@@ -8,6 +8,7 @@ import MovieDetailsPage from "./components/MovieDetails/MovieDetailsPage";
 import TvShowsDetails from "./components/TvShows/TvShowsDetails";
 import SearchedData from "./components/SearchedData";
 import { SearchProvider } from "./context";
+import Wishlist from "./components/Wishlist";
 
 function Wrapper() {
   return (
@@ -20,6 +21,7 @@ function Wrapper() {
           <Route path="/movies/:id" exact element={<MovieDetailsPage />} />
           <Route path="/tv-shows/:id" exact element={<TvShowsDetails />} />
           <Route path="/search" exact element={<SearchedData />} />
+          <Route path="/wishlist" exact element={<Wishlist />} />
         </Routes>
       </main>
     </SearchProvider>

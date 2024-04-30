@@ -57,6 +57,7 @@ export async function getTvShows(parameter) {
         name: item.name,
         voteAverage: item.vote_average,
         voteCount: item.vote_count,
+        mediaType: "tv-shows",
       };
     });
   try {
@@ -103,6 +104,7 @@ export async function getMovieDetails(movieId) {
       video: item.video,
       voteAverage: item.vote_average,
       voteCount: item.vote_count,
+      mediaType: "movies",
     };
   };
   try {
@@ -217,6 +219,7 @@ export async function getTvshowsDetails(seriesId) {
       voteAverage: data.vote_average,
       voteCount: data.vote_count,
       tagline: data.tagline,
+      mediaType: "tv-shows",
     };
   };
   const url = `https://api.themoviedb.org/3/tv/${seriesId}`;

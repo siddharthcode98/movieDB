@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCast, getTvshowsDetails, getWatchProviders } from "../../../data";
 import PopularActors from "../MovieDetails/PopularActors";
@@ -7,6 +7,8 @@ import { MdOutlineStar } from "react-icons/md";
 import TvProviders from "./TvProviders";
 import { Puff } from "react-loading-icons";
 import Header from "../Header";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { SearchContext } from "../../context";
 
 function TvShowsDetails() {
   const params = useParams();
@@ -14,6 +16,8 @@ function TvShowsDetails() {
   const [castDetails, setCastDetails] = useState([]);
   const [providers, setProviders] = useState(null);
   const [isLoading, setLoading] = useState(true);
+
+  const { wishlist, addWishList } = useContext(SearchContext);
 
   useEffect(() => {
     const getDetails = async () => {
@@ -29,6 +33,13 @@ function TvShowsDetails() {
     };
     getDetails();
   }, [params]);
+
+  const handleWishlist = () => {
+    const isExist = wishlist.find((item) => item.id == showDetails.id);
+    if (!isExist) {
+      addWishList((prevState) => [...prevState, showDetails]);
+    }
+  };
 
   return (
     <>
@@ -51,13 +62,25 @@ function TvShowsDetails() {
               className="opacity-10 md:h-[400px] w-full object-cover object-top "
             />
           </div>
-          <div className="absolute top-10 pt-16 pb-5 px-5  w-screen">
+          <div className="absolute top-2 pt-10 pb-5 px-5  w-screen">
             <div className="mr-auto ml-auto pr-10 pl-10 md:w-[640px] lg:w-[990px] xl:w-[1200px] ">
               <div className="grid md:grid-cols-2 grid-cols-1 gap-3 ">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${showDetails.posterPath}`}
-                  className="h-[500px] shadow-xl shadow-black"
-                />
+                <div className="flex flex-col md:w-2/3">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${showDetails.posterPath}`}
+                    className="object-full shadow-xl shadow-black"
+                  />
+                  <button
+                    className=" mt-10 bg-color1 md:p-2 p-1 rounded-md text-white w-full flex items-center justify-center gap-2"
+                    onClick={handleWishlist}
+                  >
+                    Add to Wishlist
+                    <IoAddCircleOutline
+                      size="18px"
+                      style={{ fontStyle: "bold" }}
+                    />
+                  </button>
+                </div>
                 <div>
                   <h1 className="text-3xl font-bold text-color2 ">
                     {showDetails.name}

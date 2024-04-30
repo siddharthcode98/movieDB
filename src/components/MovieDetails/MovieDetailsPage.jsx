@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getCast, getCrew, getMovieDetails } from "../../../data";
 import { useParams } from "react-router-dom";
 import { MdOutlineStar } from "react-icons/md";
@@ -6,6 +6,8 @@ import { Puff } from "react-loading-icons";
 import ProductionCompanies from "./ProductionCompanies";
 import PopularActors from "./PopularActors";
 import Header from "../Header";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { SearchContext } from "../../context";
 
 function MovieDetailsPage() {
   const [isLoading, setLoading] = useState(true);
@@ -13,6 +15,8 @@ function MovieDetailsPage() {
   const [movie, setMovie] = useState({});
   const [castDetails, setCastDetails] = useState([]);
   const [crewDetails, setCrewDetails] = useState([]);
+
+  const { wishlist, addWishList } = useContext(SearchContext);
 
   const params = useParams();
   //console.log(params);
@@ -37,6 +41,13 @@ function MovieDetailsPage() {
   const Generes = movie.genres === undefined ? Array(10) : movie.genres;
   const crafts = Object.groupBy(crewDetails, (item) => item.job);
 
+  const handleWishlist = () => {
+    const isExist = wishlist.find((item) => item.id == movie.id);
+    if (!isExist) {
+      addWishList((prevState) => [...prevState, movie]);
+    }
+  };
+  console.log(wishlist);
   return (
     <>
       <Header />
@@ -59,13 +70,26 @@ function MovieDetailsPage() {
                 className="opacity-10 md:h-[400px] w-full object-cover object-top "
               />
             </div>
-            <div className="absolute top-5 pt-16 pb-5 px-5  w-screen">
+            <div className="absolute top-2 pt-5 pb-5 px-5  w-screen ">
               <div className="mr-auto ml-auto pr-10 pl-10 md:w-[640px] lg:w-[990px] xl:w-[1200px] ">
                 <div className="grid md:grid-cols-2 grid-cols-1 gap-3 ">
-                  <img
-                    src={poster}
-                    className="h-[500px] shadow-xl shadow-black"
-                  />
+                  <div className="flex flex-col md:w-2/3">
+                    <img
+                      src={poster}
+                      className="object-full shadow-xl shadow-black"
+                    />
+                    <button
+                      className=" mt-10 bg-color1 md:p-2 p-1 rounded-md text-white w-full flex items-center justify-center gap-2"
+                      onClick={handleWishlist}
+                    >
+                      Add to Wishlist
+                      <IoAddCircleOutline
+                        size="18px"
+                        style={{ fontStyle: "bold" }}
+                      />
+                    </button>
+                  </div>
+
                   <div>
                     <h1 className="text-3xl font-bold text-color2 ">
                       {movie.title}
